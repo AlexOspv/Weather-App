@@ -1,27 +1,30 @@
 package com.example.weatherapp.view.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
+import com.example.weatherapp.business.model.DailyWeatherModel
+import com.example.weatherapp.databinding.ItemMainDailyBinding
 
-class MainDailyListAdapter : RecyclerView.Adapter<MainDailyListAdapter.DailyViewHolder>() {
+class MainDailyListAdapter : BaseAdapter<DailyWeatherModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_main_daily, parent, false)
-        return DailyViewHolder(view)
+        val itemBinding = ItemMainDailyBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent, false
+        )
+        return DailyViewHolder(itemBinding)
     }
 
-    override fun getItemCount(): Int {
-        return 8
+    inner class DailyViewHolder(private val itemBinding: ItemMainDailyBinding) :
+        BaseViewHolder(itemBinding.root) {
+        override fun bind(position: Int) {
+            itemBinding.itemDailyDateTextView.text = "13 Monday"
+            itemBinding.itemDailyMinTempTextView.text = "15°"
+            itemBinding.itemDailyMaxTempTextView.text = "19°"
+            itemBinding.itemDailyPopTextView.text = "17%"
+            itemBinding.itemDailyWeatherConditionIcon.setImageResource(R.drawable.ic_sunny_24)
+        }
     }
 
-    override fun onBindViewHolder(holder: DailyViewHolder, position: Int) {
-
-    }
-
-    inner class DailyViewHolder(view : View) : RecyclerView.ViewHolder(view) {
-
-    }
 }

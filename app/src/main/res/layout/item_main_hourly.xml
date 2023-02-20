@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textSize="17sp"
-            android:text="19:00"/>
+            tools:text="19:00"/>
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/MainTextViewStyle"
@@ -29,7 +29,7 @@
             android:layout_marginBottom="4dp"
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
-            android:text="20\u00B0"/>
+            tools:text="20\u00B0"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                 android:id="@+id/itemHourlyWeatherConditionIcon"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/ic_sunny_24"/>
+                tools:src="@drawable/ic_sunny_24"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/itemHourlyPopTextView"
@@ -53,7 +53,7 @@
                 android:layout_gravity="center"
                 android:includeFontPadding="false"
                 android:textSize="12sp"
-                android:text="25 %"/>
+                tools:text="25 %"/>
 
         </LinearLayout>
 
