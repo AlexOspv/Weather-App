@@ -6,7 +6,6 @@ import com.example.weatherapp.R
 import com.example.weatherapp.business.model.HourlyWeatherModel
 import com.example.weatherapp.databinding.ItemMainHourlyBinding
 
-
 class MainHourlyListAdapter : BaseAdapter<HourlyWeatherModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourlyViewHolder {
