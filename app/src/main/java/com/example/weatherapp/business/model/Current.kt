@@ -9,7 +9,7 @@ data class Current(
     val pressure: Int,
     val sunrise: Int,
     val sunset: Int,
-    val temp: Int,
+    val temp: Double,
     val uvi: Int,
     val visibility: Int,
     val weather: List<Weather>,

@@ -1,11 +1,13 @@
 package com.example.weatherapp
 
+import android.annotation.SuppressLint
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.business.model.DailyWeatherModel
 import com.example.weatherapp.business.model.HourlyWeatherModel
+import com.example.weatherapp.business.model.WeatherDataModel
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.presenters.MainPresenter
 import com.example.weatherapp.view.MainView
@@ -26,6 +28,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private lateinit var mLocation: Location
 
     private lateinit var binding: ActivityMainBinding
+    @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -77,7 +80,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         binding.mainCityNameTextView.text = data
     }
 
-    override fun displayCurrentData(data: WeatherData) {
+    //TODO apply data from internet
+    override fun displayCurrentData(data: WeatherDataModel) {
         binding.mainCityNameTextView.text = "Moscow"
         binding.mainDateTextView.text = "16 february"
         binding.mainWeatherConditionIcon.setImageResource(R.drawable.ic_sunny_24)
