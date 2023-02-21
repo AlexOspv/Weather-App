@@ -2,7 +2,6 @@ package com.example.weatherapp.view
 
 import com.example.weatherapp.business.model.DailyWeatherModel
 import com.example.weatherapp.business.model.HourlyWeatherModel
-import com.example.weatherapp.business.model.WeatherData
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 

@@ -1,22 +1,17 @@
 package com.example.weatherapp
 
-import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherapp.business.model.DailyWeatherModel
 import com.example.weatherapp.business.model.HourlyWeatherModel
-import com.example.weatherapp.business.model.WeatherData
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.presenters.MainPresenter
 import com.example.weatherapp.view.MainView
 import com.example.weatherapp.view.adapters.MainDailyListAdapter
 import com.example.weatherapp.view.adapters.MainHourlyListAdapter
 import com.google.android.gms.location.*
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
