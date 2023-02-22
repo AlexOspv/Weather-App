@@ -10,7 +10,7 @@ import com.example.weatherapp.business.model.HourlyWeatherModel
 import com.example.weatherapp.business.model.WeatherDataModel
 import com.example.weatherapp.databinding.ActivityMainBinding
 import com.example.weatherapp.presenters.MainPresenter
-import com.example.weatherapp.view.MainView
+import com.example.weatherapp.view.*
 import com.example.weatherapp.view.adapters.MainDailyListAdapter
 import com.example.weatherapp.view.adapters.MainHourlyListAdapter
 import com.google.android.gms.location.*
@@ -45,7 +45,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
         binding.mainDailyList.apply {
             adapter = MainDailyListAdapter()
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
 
@@ -82,20 +82,26 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     //TODO apply data from internet
     override fun displayCurrentData(data: WeatherDataModel) {
-        binding.mainCityNameTextView.text = "Moscow"
-        binding.mainDateTextView.text = "16 february"
-        binding.mainWeatherConditionIcon.setImageResource(R.drawable.ic_sunny_24)
-        binding.mainWeatherConditionTextView.text = "Sunny"
-        binding.mainTemp.text = "25\u00B0"
-        binding.mainTempMinTextView.text = "19"
-        binding.mainTempMaxTextView.text = "28"
-        binding.mainTempAvgTextView.text = "24"
-        binding.mainWeatherImageView.setImageResource(R.mipmap.clowd_3x)
-        binding.mainPressureTextView.text = "1023 hPa"
-        binding.mainHumidityTextView.text = "91%"
-        binding.mainWindSpeedTextView.text = "4 m/s"
-        binding.mainSunriseTextView.text = "05:24"
-        binding.mainSunsetTextView.text = "19:34"
+        data.apply {
+
+            binding.mainDateTextView.text = current.dt.toDateFormatOf(DAY_FULL_MONTH_NAME)
+            binding.mainWeatherConditionIcon.setImageResource(current.weather[0].icon.provideIcon())
+            binding.mainWeatherConditionTextView.text = current.weather[0].description
+            binding.mainTemp.text = StringBuilder().append(current.temp.toDegree()).append(" °").toString()
+            daily[0].temp.apply {
+                binding.mainTempMinTextView.text = min.toDegree()
+                binding.mainTempMaxTextView.text = max.toDegree()
+            }
+            binding.mainTempAvgTextView.text = current.temp.toDegree()
+            binding.mainWeatherImageView.setImageResource(current.weather[0].icon.provideMainIcon())
+            binding.mainPressureTextView.text = StringBuilder().append(current.pressure.toString()).append(" hPa").toString()
+            binding.mainHumidityTextView.text = StringBuilder().append(current.humidity.toString()).append(" %").toString()
+            binding.mainWindSpeedTextView.text = StringBuilder().append(current.wind_speed.toString()).append(" m/s").toString()
+            binding.mainSunriseTextView.text = current.sunrise.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+            binding.mainSunsetTextView.text = current.sunset.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+
+        }
+
     }
 
     override fun displayHourlyData(data: List<HourlyWeatherModel>) {

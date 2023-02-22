@@ -68,7 +68,7 @@
             app:layout_constraintBottom_toTopOf="@id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mainSettingsButton"
-            tools:src="@mipmap/clowd_3x" />
+            tools:src="@mipmap/cloudy_sun_3x" />
 
 
         <ImageView

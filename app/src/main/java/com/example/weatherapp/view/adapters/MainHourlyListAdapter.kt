@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import com.example.weatherapp.R
 import com.example.weatherapp.business.model.HourlyWeatherModel
 import com.example.weatherapp.databinding.ItemMainHourlyBinding
+import com.example.weatherapp.view.*
 
 class MainHourlyListAdapter : BaseAdapter<HourlyWeatherModel>() {
 
@@ -17,12 +18,15 @@ class MainHourlyListAdapter : BaseAdapter<HourlyWeatherModel>() {
     inner class HourlyViewHolder(private val itemBinding: ItemMainHourlyBinding) :
         BaseViewHolder(itemBinding.root) {
         override fun bind(position: Int) {
-            itemBinding.itemHourlyTimeTextView.text = "15:00"
-            itemBinding.itemHourlyTempTextView.text = "15°"
-            itemBinding.itemHourlyPopTextView.text = "99%"
-            itemBinding.itemHourlyWeatherConditionIcon.setImageResource(R.drawable.ic_sunny_24)
+            mData[position].apply {
+
+                itemBinding.itemHourlyTimeTextView.text = dt.toDateFormatOf(HOUR_DOUBLE_DOT_MINUTE)
+                itemBinding.itemHourlyTempTextView.text = StringBuilder().append(temp.toDegree()).append(" °").toString()
+                itemBinding.itemHourlyPopTextView.text = pop.toPercentString(" %")
+                itemBinding.itemHourlyWeatherConditionIcon.setImageResource(weather[0].icon.provideIcon())
+
+            }
         }
     }
-
 }
 
